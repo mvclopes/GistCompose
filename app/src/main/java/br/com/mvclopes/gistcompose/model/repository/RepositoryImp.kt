@@ -5,6 +5,7 @@ import br.com.mvclopes.gistcompose.model.domain.Gist
 import br.com.mvclopes.gistcompose.model.domain.toDomain
 import br.com.mvclopes.gistcompose.model.repository.api.ApiModule
 import br.com.mvclopes.gistcompose.model.repository.api.ApiService
+import br.com.mvclopes.gistcompose.model.repository.api.GistResponse
 import br.com.mvclopes.gistcompose.utils.BANNER_IMG_URL
 import br.com.mvclopes.gistcompose.utils.DEFAULT_BANNER_IMAGE
 import br.com.mvclopes.gistcompose.utils.toDomain
@@ -17,11 +18,11 @@ class RepositoryImp(
     private val dispatcher: CoroutineDispatcher
 ): Repository {
 
-    override suspend fun fetchGists(): List<Gist> {
-        var result: List<Gist> = ArrayList()
+    override suspend fun fetchGists(): List<GistResponse> {
+        var result = ArrayList<GistResponse>()
         withContext(dispatcher){
             try {
-                result = service.getPublicGists().map { it.toDomain() }
+                result = service.getPublicGists()
             } catch (e: Exception) { Log.i("TAG_Repo", "Failure: ${e.message}") }
         }
         return result

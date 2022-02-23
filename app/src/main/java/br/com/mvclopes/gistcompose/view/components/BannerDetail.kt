@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.mvclopes.gistcompose.R
 import br.com.mvclopes.gistcompose.model.domain.Gist
+import br.com.mvclopes.gistcompose.utils.BANNER_IMG_URL
 import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
@@ -42,7 +43,7 @@ fun BannerDetail(
             .wrapContentHeight()
     ) {
         GlideImage(
-            imageModel = urlImageBanner,
+            imageModel = BANNER_IMG_URL, //TODO: criar requisição a API para imagem do Banner
             contentDescription = "Cover image",
             contentScale = ContentScale.Crop,
             modifier = Modifier
